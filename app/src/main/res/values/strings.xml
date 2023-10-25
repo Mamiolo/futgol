@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">FUTGOL</string>
+    <string name="fcuenta">Cuenta</string>
+    <string name="fcontrasenia">Contraseña</string>
+    <string name="btnIngresar">Iniciar sesión</string>
+    <string name="btnReservar">RESERVAR</string>
+    <string name="btnCancelar">CANCELAR</string>
+    <string name="btnVermas">VER MÁS</string>
+    <string name="tbLogin">INICIO SESIÓN</string>
+    <string name="cuenta">Ingrese sus datos</string>
+    <string name="tbcalendario">CALENDARIO</string>
+    <string name="tbmenu">MENÚ</string>
+    <string name="tbcancelar">CANCELAR</string>
+    <string name="tbhorarios">HORARIOS</string>
+    <string name="tbreservar">RESERVAR</string>
+    <string name="btnverhorarios">VER HORARIOS</string>
+    <string name="tbvermas">VER MÁS</string>
+    <string name="fnumdocumento">N° DOCUMENTO</string>
+    <string name="fmotivo">MOTIVO</string>
+    <string name="tbcalendarioadmin">DESHABILITAR</string>
+    <string name="tbdeshabilitar">DESHABILITAR</string>
+    <string name="btnadmincalendar">SELECCIONAR</string>
+
+    <array name="cancel_reasons">
+        <item>Se canceló partido</item>
+        <item>El precio es muy elevado</item>
+        <item>La hora no es correcta</item>
+        <item>Otro</item>
+    </array>
+</resources>

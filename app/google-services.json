@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "78109088",
+    "project_id": "futgol-f76b7",
+    "storage_bucket": "futgol-f76b7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:78109088:android:15eddab4467598c04eacc5",
+        "android_client_info": {
+          "package_name": "com.example.futgol"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCR9fIeQtgq5aVJjgs72jh-6hyXhIhAbTw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

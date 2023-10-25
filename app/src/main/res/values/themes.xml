@@ -1,0 +1,17 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.FUTGOL" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.FUTGOL" parent="Base.Theme.FUTGOL" />
+
+    <style name="Calendario">
+        <item name="android:background">@color/green_900</item> <!-- Fondo blanco -->
+        <item name="android:textColorPrimary">#FFFFFF</item> <!-- Texto blanco -->
+        <item name="android:textColorSecondary">@color/yellow_500</item> <!-- Texto blanco -->
+        <item name="android:colorAccent">@color/yellow_500</item> <!-- Círculo seleccionador amarillo -->
+    </style>
+
+</resources>

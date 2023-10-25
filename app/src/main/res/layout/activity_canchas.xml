@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green_500"
+    tools:context=".Canchas">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar11"
+        android:layout_width="412dp"
+        android:layout_height="77dp"
+        android:background="@color/green_800"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tbdeshabilitar2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="73dp"
+        android:text="CANCHAS"
+        android:textColor="@color/yellow_500"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageButton14"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Botón Agregar Cancha -->
+
+    <!-- Contenedor de Canchas (ScrollView) -->
+    <ImageButton
+        android:id="@+id/imageButton14"
+        android:layout_width="67dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="39dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="volver"
+        android:rotation="90"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar11"
+        app:layout_constraintEnd_toStartOf="@+id/tbdeshabilitar2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@android:drawable/arrow_down_float" />
+
+    <ScrollView
+        android:id="@+id/canchasContainer"
+        android:layout_width="402dp"
+        android:layout_height="429dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnAgregarCancha"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbdeshabilitar2">
+
+        <LinearLayout
+            android:id="@+id/canchasLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <!-- Botón Agregar Cancha -->
+    <Button
+        android:id="@+id/btnAgregarCancha"
+        android:layout_width="189dp"
+        android:layout_height="79dp"
+        android:backgroundTint="@color/yellow_500"
+        android:text="Agregar Cancha"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.963" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

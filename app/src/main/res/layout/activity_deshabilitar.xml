@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green_500"
+    tools:context=".Deshabilitar">
+
+    <Button
+        android:id="@+id/buttonGuardar"
+        android:layout_width="219dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/yellow_500"
+        android:onClick="guardar"
+        android:text="CONFIRMAR"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbdeshabilitar" />
+
+    <TextView
+        android:id="@+id/fechadh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="586dp"
+        android:hint="@string/fnumdocumento"
+        android:text="FECHA"
+        android:textIsSelectable="false"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton13" />
+
+    <TextView
+        android:id="@+id/opcionesdh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="17dp"
+        android:text="OPCIONES"
+        android:textIsSelectable="false"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/formopciones"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/formfechadh" />
+
+    <TextView
+        android:id="@+id/horadh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="18dp"
+        android:text="HORA"
+        android:textIsSelectable="false"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/formhoradh"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/formopciones" />
+
+    <EditText
+        android:id="@+id/formfechadh"
+        android:layout_width="317dp"
+        android:layout_height="46dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="21dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:inputType="none"
+        app:layout_constraintBottom_toTopOf="@+id/opcionesdh"
+        app:layout_constraintEnd_toEndOf="@+id/tbdeshabilitar"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/fechadh"
+        app:layout_constraintTop_toBottomOf="@+id/fechadh" />
+
+    <Spinner
+        android:id="@+id/formopciones"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="29dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/horadh"
+        app:layout_constraintEnd_toEndOf="@+id/formhoradh"
+        app:layout_constraintStart_toStartOf="@+id/opcionesdh"
+        app:layout_constraintTop_toBottomOf="@+id/opcionesdh" />
+
+    <Spinner
+        android:id="@+id/formhoradh"
+        android:layout_width="319dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="282dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horadh" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar10"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="31dp"
+        android:background="@color/green_800"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toTopOf="@+id/fechadh"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tbdeshabilitar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="67dp"
+        android:layout_marginBottom="562dp"
+        android:text="@string/tbdeshabilitar"
+        android:textColor="@color/yellow_500"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonGuardar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageButton13"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton13"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="55dp"
+        android:onClick="volver"
+        android:rotation="90"
+        app:layout_constraintBottom_toTopOf="@+id/fechadh"
+        app:layout_constraintEnd_toStartOf="@+id/tbdeshabilitar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/arrow_down_float" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

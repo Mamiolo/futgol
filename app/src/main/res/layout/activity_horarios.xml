@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green_500"
+    tools:context=".Horarios">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar7"
+        android:layout_width="411dp"
+        android:layout_height="73dp"
+        android:background="@color/green_800"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton8"
+        android:layout_width="54dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:onClick="volver"
+        android:rotation="90"
+        app:layout_constraintStart_toStartOf="@+id/toolbar7"
+        app:layout_constraintTop_toTopOf="@+id/toolbar7"
+        app:srcCompat="@android:drawable/arrow_down_float" />
+
+    <TextView
+        android:id="@+id/textViewFecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textAlignment="center"
+        android:textColor="@color/yellow_500"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar7"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="@+id/toolbar7"
+        app:layout_constraintTop_toTopOf="@+id/toolbar7" />
+
+    <!-- Botones -->
+
+    <Button
+        android:id="@+id/btnHora21"
+        android:layout_width="410dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/green_A200"
+        android:text="21:00 - Disponible"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFecha" />
+
+    <Button
+        android:id="@+id/btnHora22"
+        android:layout_width="410dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/green_A200"
+        android:text="22:00 - Disponible"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnHora21" />
+
+    <Button
+        android:id="@+id/btnHora23"
+        android:layout_width="410dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/green_A200"
+        android:text="23:00 - Disponible"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnHora22" />
+
+    <Button
+        android:id="@+id/btnHora00"
+        android:layout_width="410dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/green_A200"
+        android:text="00:00 - Disponible"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnHora23" />
+</androidx.constraintlayout.widget.ConstraintLayout>
