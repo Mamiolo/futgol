@@ -9,7 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 
 public class Deshabilitar extends AppCompatActivity {
 
@@ -31,7 +32,6 @@ public class Deshabilitar extends AppCompatActivity {
         ArrayAdapter<String> opcionesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new String[]{
                 "Deshabilitar día",
                 "Deshabilitar hora",
-                "Deshabilitar día y cancelar reservas"
         });
         opcionesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerOpcion.setAdapter(opcionesAdapter);
@@ -47,12 +47,11 @@ public class Deshabilitar extends AppCompatActivity {
         spinnerHora.setAdapter(horasAdapter);
 
         spinnerOpcion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
+
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 spinnerHora.setEnabled(position == 1);
             }
 
-            @Override
             public void onNothingSelected(AdapterView<?> parentView) {
             }
         });
@@ -68,10 +67,19 @@ public class Deshabilitar extends AppCompatActivity {
 
     public void guardar(View v) {
         String opcion = spinnerOpcion.getSelectedItem().toString();
-        String hora = spinnerHora.isEnabled() ? spinnerHora.getSelectedItem().toString() : "";
+        String hora = "";
         String fecha = editTextFecha.getText().toString();
 
+        if (opcion.equals("Deshabilitar hora")) {
+            hora = spinnerHora.getSelectedItem().toString();
+        } else if (opcion.equals("Deshabilitar día")) {
+            hora = "todas";
+        }
 
-        volver(null);
+        Ocupado ocupado = new Ocupado(fecha, hora, "nodisponible", "nodisponible", "nodisponible", "nodisponible", "nodisponible");
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("ocupaciones")
+                .add(ocupado);
     }
 }

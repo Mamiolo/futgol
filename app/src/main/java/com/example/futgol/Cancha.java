@@ -29,8 +29,4 @@ public class Cancha {
     }
 
 
-    @Override
-    public String toString() {
-        return "Cancha [Número de Cancha=" + numeroCancha + ", Estado=" + estado + "]";
-    }
 }

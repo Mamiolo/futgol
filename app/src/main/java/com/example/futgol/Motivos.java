@@ -7,14 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -43,7 +39,6 @@ public class Motivos extends AppCompatActivity {
 
         listViewMotivos.setAdapter(motivoAdapter);
 
-        // Cargar motivos desde Firestore
         cargarMotivosDesdeFirestore();
     }
 
@@ -77,7 +72,7 @@ public class Motivos extends AppCompatActivity {
             this.resource = resource;
         }
 
-        @Override
+
         public View getView(final int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
                 convertView = getLayoutInflater().inflate(resource, parent, false);
@@ -93,7 +88,6 @@ public class Motivos extends AppCompatActivity {
             textViewMotivo.setText(motivo.getMotivo());
 
             buttonEliminar.setOnClickListener(new View.OnClickListener() {
-                @Override
                 public void onClick(View v) {
                     String nombreMotivo = motivo.getNombre();
 
@@ -103,7 +97,6 @@ public class Motivos extends AppCompatActivity {
                             .addOnCompleteListener(task -> {
                                 if (task.isSuccessful()) {
                                     for (DocumentSnapshot document : task.getResult()) {
-                                        // Eliminar el motivo encontrado en Firestore
                                         db.collection("motivos")
                                                 .document(document.getId())
                                                 .delete()
@@ -111,9 +104,6 @@ public class Motivos extends AppCompatActivity {
                                                     motivosList.remove(motivo);
                                                     motivoAdapter.notifyDataSetChanged();
                                                     Toast.makeText(Motivos.this, "Motivo eliminado.", Toast.LENGTH_SHORT).show();
-                                                })
-                                                .addOnFailureListener(e -> {
-                                                    Toast.makeText(Motivos.this, "Error al eliminar el motivo." + e.getMessage(), Toast.LENGTH_SHORT).show();
                                                 });
                                     }
                                 } else {
@@ -122,12 +112,6 @@ public class Motivos extends AppCompatActivity {
                             });
                 }
             });
-
-
-
-
-
-
             return convertView;
         }
     }

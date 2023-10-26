@@ -14,10 +14,8 @@ import android.widget.Toast;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
-import android.util.Log;
 
 public class Cancelar extends AppCompatActivity {
-    private static final String TAG = "CancelarActivity";
 
     private Spinner spinner;
     private EditText editTextTextMultiLine;
@@ -48,35 +46,27 @@ public class Cancelar extends AppCompatActivity {
                 }
             }
 
-            @Override
+
             public void onNothingSelected(AdapterView<?> parentView) {
             }
         });
     }
 
     public void cancelarReserva(View view) {
-        // Obtén el número de documento ingresado
         String numeroDocumento = ((EditText) findViewById(R.id.fcuenta2)).getText().toString();
-        Log.d(TAG, "Número de documento ingresado: " + numeroDocumento);
 
         Query reservaQuery = db.collection("reservas").whereEqualTo("numeroDocumento", numeroDocumento);
         reservaQuery.get().addOnCompleteListener(task -> {
             if (task.isSuccessful() && !task.getResult().isEmpty()) {
-                Log.d(TAG, "Se encontró una reserva con el número de documento");
 
-                // Obtén la reserva
+
                 QuerySnapshot querySnapshot = task.getResult();
                 String nombre = querySnapshot.getDocuments().get(0).getString("nombre");
-                Log.d(TAG, "Nombre de la reserva: " + nombre);
-
-                // Obtén el motivo seleccionado
                 String selectedReason = spinner.getSelectedItem().toString();
-                Log.d(TAG, "Motivo seleccionado: " + selectedReason);
 
                 String motivoFinal;
                 if (selectedReason.equals("Otro")) {
                     String otroMotivo = editTextTextMultiLine.getText().toString();
-                    Log.d(TAG, "Motivo personalizado: " + otroMotivo);
                     motivoFinal = otroMotivo;
                 } else {
                     motivoFinal = selectedReason;
@@ -99,17 +89,10 @@ public class Cancelar extends AppCompatActivity {
 
                                         querySnapshot.getDocuments().get(0).getReference().delete()
                                                 .addOnSuccessListener(aVoid -> {
-                                                    Log.d(TAG, "Documento eliminado de la colección 'reservas'");
                                                     Toast.makeText(this, "Cancelación realizada con éxito.", Toast.LENGTH_SHORT).show();
                                                     Intent i = new Intent(this, MainActivity.class);
                                                     startActivity(i);
-                                                })
-                                                .addOnFailureListener(e -> {
-                                                    Log.w(TAG, "Error al eliminar el documento de la colección 'reservas", e);
                                                 });
-                                    })
-                                    .addOnFailureListener(e -> {
-                                        Log.w(TAG, "Error al agregar el motivo a la colección 'motivos", e);
                                     });
                         });
             } else {

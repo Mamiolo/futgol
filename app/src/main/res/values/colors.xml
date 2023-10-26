@@ -7,4 +7,6 @@
     <color name="green_800">#2E7D32</color>
     <color name="green_A200">#69F0AE</color>
     <color name="yellow_500">#FFEB3B</color>
+    <color name="ocupado">#FF6666</color>
+
 </resources>

@@ -38,8 +38,4 @@ public class Motivo {
         this.motivo = motivo;
     }
 
-    @Override
-    public String toString() {
-        return "Motivo [ID de Motivo=" + idMotivo + ", Nombre=" + nombre + ", Motivo=" + motivo + "]";
-    }
 }

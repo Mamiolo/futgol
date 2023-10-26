@@ -7,13 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CalendarView;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.util.Log;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 
 public class Calendario extends AppCompatActivity {
@@ -32,7 +27,6 @@ public class Calendario extends AppCompatActivity {
         fecha = findViewById(R.id.fecha);
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
                 String fechaget = i2 +"/"+ i1 +"/"+ i;
                 fecha.setText(fechaget);
@@ -51,9 +45,7 @@ public class Calendario extends AppCompatActivity {
     public void horarios(View v) {
         String fechaget = fecha.getText().toString();
 
-
         if (fechaget != null) {
-            Log.d("Fecha", "Fecha ingresada correctamente: " + fechaget);
             Intent i = new Intent(this, Horarios.class);
             i.putExtra("FECHA", fechaget);
 

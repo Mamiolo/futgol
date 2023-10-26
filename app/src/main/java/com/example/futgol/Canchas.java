@@ -8,16 +8,12 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +36,6 @@ public class Canchas extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
 
         btnAgregarCancha.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View view) {
                 if (canchasAgregadas < 5) {
                     agregarNuevaCancha();
@@ -54,31 +49,22 @@ public class Canchas extends AppCompatActivity {
     private void agregarNuevaCancha() {
         if (canchasAgregadas < 5) {
             generarNumeroCanchaUnico(new OnUniqueNumberGeneratedListener() {
-                @Override
                 public void onUniqueNumberGenerated(int numeroCancha) {
                     if (numeroCancha != -1) {
                         Cancha nuevaCancha = new Cancha(numeroCancha, "disponible");
 
-                        // Agrega la cancha a Firestore
                         db.collection("canchas")
-                                .add(nuevaCancha)
-                                .addOnSuccessListener(documentReference -> {
-                                })
-                                .addOnFailureListener(e -> {
-                                });
+                                .add(nuevaCancha);
                     } else {
-                        mostrarMensaje("No se pueden agregar más canchas. Ya existen 5 canchas.");
                     }
                 }
             });
         } else {
-            mostrarMensaje("No se pueden agregar más canchas. Ya existen 5 canchas.");
+            Toast.makeText(this, "No se pueden agregar más canchas. Ya existen 5 canchas.", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void mostrarMensaje(String mensaje) {
-        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
-    }
+
 
 
     private void generarNumeroCanchaUnico(final OnUniqueNumberGeneratedListener listener) {
@@ -153,24 +139,15 @@ public class Canchas extends AppCompatActivity {
         btnEliminar.setOnClickListener(view -> {
             db.collection("canchas")
                     .document(documentId)
-                    .delete()
-                    .addOnSuccessListener(aVoid -> {
-                    })
-                    .addOnFailureListener(e -> {
-                    });
+                    .delete();
             canchasLayout.removeView(canchaView);
         });
     }
 
     private void actualizarEstadoCancha(String documentId, String nuevoEstado) {
-        // Actualiza el estado de la cancha en Firestore
         db.collection("canchas")
                 .document(documentId)
-                .update("estado", nuevoEstado)
-                .addOnSuccessListener(aVoid -> {
-                })
-                .addOnFailureListener(e -> {
-                });
+                .update("estado", nuevoEstado);
     }
 
 

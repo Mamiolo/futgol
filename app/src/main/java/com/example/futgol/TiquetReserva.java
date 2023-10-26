@@ -1,7 +1,7 @@
 package com.example.futgol;
 
 public class TiquetReserva {
-    private long idTiquet; // Cambiado a long
+    private long idTiquet;
     private String fecha;
     private String hora;
     private String nombre;
@@ -77,15 +77,4 @@ public class TiquetReserva {
         this.cancha = cancha;
     }
 
-    public String toString() {
-        return "TiquetReserva{" +
-                "idTiquet=" + idTiquet +
-                ", fecha='" + fecha + '\'' +
-                ", hora='" + hora + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", numeroDocumento='" + numeroDocumento + '\'' +
-                ", cancha=" + cancha +
-                '}';
-    }
 }

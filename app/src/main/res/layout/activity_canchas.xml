@@ -34,9 +34,7 @@
         app:layout_constraintStart_toEndOf="@+id/imageButton14"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Botón Agregar Cancha -->
 
-    <!-- Contenedor de Canchas (ScrollView) -->
     <ImageButton
         android:id="@+id/imageButton14"
         android:layout_width="67dp"
@@ -70,7 +68,6 @@
             android:orientation="vertical" />
     </ScrollView>
 
-    <!-- Botón Agregar Cancha -->
     <Button
         android:id="@+id/btnAgregarCancha"
         android:layout_width="189dp"

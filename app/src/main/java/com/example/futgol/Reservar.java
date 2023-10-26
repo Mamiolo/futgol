@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.EditText;
@@ -51,27 +50,45 @@ public class Reservar extends AppCompatActivity {
     }
 
     private void cargarNumerosCanchasDisponibles() {
+        String fecha = editTextFecha.getText().toString();
+        String hora = editTextHora.getText().toString();
+
         db.collection("canchas")
                 .whereEqualTo("estado", "disponible")
                 .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    List<String> numerosCanchas = new ArrayList<>();
+                .addOnSuccessListener(queryDocumentSnapshotsCanchas -> {
+                    List<String> numerosCanchasDisponibles = new ArrayList<>();
 
-                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshotsCanchas) {
                         Cancha cancha = document.toObject(Cancha.class);
                         if (cancha != null) {
-                            numerosCanchas.add(String.valueOf(cancha.getNumeroCancha()));
+                            numerosCanchasDisponibles.add(String.valueOf(cancha.getNumeroCancha()));
                         }
                     }
-                    ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, numerosCanchas);
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerCancha.setAdapter(adapter);
-                })
-                .addOnFailureListener(e -> {
-                    Log.e("Reservar", "Error al cargar las canchas disponibles: " + e.getMessage());
-                    Toast.makeText(this, "Error al cargar las canchas disponibles.", Toast.LENGTH_SHORT).show();
+
+                    db.collection("ocupaciones")
+                            .whereEqualTo("fecha", fecha)
+                            .whereEqualTo("hora", hora)
+                            .get()
+                            .addOnSuccessListener(queryDocumentSnapshotsOcupaciones -> {
+                                for (QueryDocumentSnapshot document : queryDocumentSnapshotsOcupaciones) {
+                                    for (int i = 1; i <= 5; i++) {
+                                        String campoKey = "c" + i;
+                                        String estado = document.getString(campoKey);
+                                        if (estado != null && estado.equals("nodisponible")) {
+                                            numerosCanchasDisponibles.remove(String.valueOf(i));
+                                        }
+                                    }
+                                }
+
+                                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, numerosCanchasDisponibles);
+                                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spinnerCancha.setAdapter(adapter);
+                            });
                 });
     }
+
+
 
     public void volver(View v) {
         Intent i = new Intent(this, Calendario.class);
@@ -98,14 +115,47 @@ public class Reservar extends AppCompatActivity {
 
             db.collection("reservas").document(String.valueOf(idTiquet)).set(tiquetReserva)
                     .addOnSuccessListener(aVoid -> {
+                        actualizarOcupacion(fechaStr, hora, numeroCanchaSeleccionada);
                         Toast.makeText(this, "Reserva realizada con éxito.", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(this, MainActivity.class);
                         startActivity(i);
-                    })
-                    .addOnFailureListener(e -> {
-                        Log.e("Reservar", "Error al guardar la reserva: " + e.getMessage());
-                        Toast.makeText(this, "Error al realizar la reserva.", Toast.LENGTH_SHORT).show();
                     });
         }
+    }
+
+    private void actualizarOcupacion(String fecha, String hora, String numeroCancha) {
+        String campoCancha = "c" + numeroCancha;
+        db.collection("ocupaciones")
+                .whereEqualTo("fecha", fecha)
+                .whereEqualTo("hora", hora)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    if (!queryDocumentSnapshots.isEmpty()) {
+                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                            documentSnapshot.getReference().update(campoCancha, "nodisponible");
+                        }
+                    } else {
+                        Ocupado ocupado = new Ocupado(fecha, hora, "disponible", "disponible", "disponible", "disponible", "disponible");
+                        switch (numeroCancha) {
+                            case "1":
+                                ocupado.setC1("nodisponible");
+                                break;
+                            case "2":
+                                ocupado.setC2("nodisponible");
+                                break;
+                            case "3":
+                                ocupado.setC3("nodisponible");
+                                break;
+                            case "4":
+                                ocupado.setC4("nodisponible");
+                                break;
+                            case "5":
+                                ocupado.setC5("nodisponible");
+                                break;
+                        }
+
+                        db.collection("ocupaciones").add(ocupado);
+                    }
+                });
     }
 }
